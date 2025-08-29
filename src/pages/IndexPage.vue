@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-xl">
+  <q-page class="q-pa-md q-pa-md-xl">
     <div v-if="isLoading" class="skeleton-container">
       <q-skeleton height="60px" class="q-mb-lg" />
       
