@@ -1,14 +1,32 @@
 <template>
   <q-page class="q-pa-xl">
-    <div v-if="isLoading" class="text-center">
-      <q-spinner size="3em" />
-      <div>Загрузка контента...</div>
+    <div v-if="isLoading" class="skeleton-container">
+      <q-skeleton height="60px" class="q-mb-lg" />
+      
+      <div class="q-mb-md">
+        <q-skeleton height="20px" width="80%" />
+        <q-skeleton height="20px" width="90%" class="q-mt-sm" />
+        <q-skeleton height="20px" width="75%" class="q-mt-sm" />
+      </div>
+      
+      <div class="q-mb-md">
+        <q-skeleton height="20px" width="85%" />
+        <q-skeleton height="20px" width="70%" class="q-mt-sm" />
+        <q-skeleton height="20px" width="95%" class="q-mt-sm" />
+        <q-skeleton height="20px" width="60%" class="q-mt-sm" />
+      </div>
+      
+      <div class="q-mb-md">
+        <q-skeleton height="20px" width="90%" />
+        <q-skeleton height="20px" width="80%" class="q-mt-sm" />
+      </div>
+      
+      <q-skeleton height="200px" class="q-mt-lg" />
     </div>
 
     <div v-else-if="error" class="text-negative">
-      Ошибка загрузки: {{ error }}
-      <br>
-      <small>Файл: {{ contentFile }}</small>
+      Download error: {{ error }}<br>
+      <small>Fail: {{ contentFile }}</small>
     </div>
 
     <div v-else>
