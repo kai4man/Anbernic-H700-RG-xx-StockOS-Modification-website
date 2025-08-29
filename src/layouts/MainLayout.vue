@@ -1,12 +1,12 @@
 <template>
   <q-layout view="lHh LpR lFf">
-    <q-header bordered class="bg-primary text-white">
-      <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-        <q-btn :icon="themeIcon" round @click="toggleTheme" />
-        <q-toolbar-title>
-          
-        </q-toolbar-title>
+    <q-header bordered class="bg-secondary text-white">
+      <q-toolbar class="justify-between">
+        <q-btn flat round icon="menu" :color="buttonColor" @click="toggleLeftDrawer" />
+        <div class="row ">
+          <q-btn :icon="themeIcon" :color="buttonColor" class="q-mr-md" flat round @click="toggleTheme" />
+          <GitHubWidget />
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -29,8 +29,9 @@
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import { useTheme } from 'src/composables/useTheme'
+import GitHubWidget from 'components/GtiHubWidget.vue'
 
-const { toggleTheme, themeIcon } = useTheme()
+const { toggleTheme, themeIcon, buttonColor } = useTheme()
 
 const linksList = [
   {
@@ -46,11 +47,11 @@ const linksList = [
     children: [
       {
         title: 'Current',
-        link: 'release/current',
+        link: '/release/current',
       },
       {
         title: 'Change Log',
-        link: 'release/change_log',
+        link: '/release/change_log',
       },
     ],
   },

@@ -9,6 +9,8 @@ export function useTheme() {
 
   const themeIcon = computed(() => (isDark.value ? 'light_mode' : 'dark_mode'))
 
+  const buttonColor = computed(() => (isDark.value ? 'secondary' : 'dark'))
+
   const toggleTheme = () => {
     $q.dark.toggle()
     LocalStorage.set('darkMode', $q.dark.isActive)
@@ -34,6 +36,7 @@ export function useTheme() {
     isDark,
     theme,
     themeIcon,
+    buttonColor,
     toggleTheme,
     setTheme,
   }

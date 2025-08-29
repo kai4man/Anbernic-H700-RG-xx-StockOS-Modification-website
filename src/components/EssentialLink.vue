@@ -3,7 +3,7 @@
     v-if="children && children.length"
     :label="title"
     :icon="icon"
-    expand-separator dense
+    dense
     :default-opened="hasActiveChild"
   >
     <EssentialLink
