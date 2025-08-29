@@ -1,3 +1,3 @@
-# StockOS Modification (stockos-modification)
+# StockOS Modification website
 
-Anbernic-H700-RG-xx-StockOS-Modification
+Anbernic-H700-RG-xx-StockOS-Modification-website
