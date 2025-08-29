@@ -4,12 +4,14 @@
     :label="title"
     :icon="icon"
     expand-separator dense
+    :default-opened="hasActiveChild"
   >
     <EssentialLink
       v-for="(child, idx) in children"
       :key="idx"
       v-bind="child"
       dense
+      class="q-pl-lg"
     />
   </q-expansion-item>
 
@@ -18,6 +20,7 @@
     clickable v-ripple dense
     tag="a"
     :href="link"
+    :class="{'bg-primary text-white': isActive}"
   >
     <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
@@ -29,7 +32,13 @@
 </template>
 
 <script setup>
-defineProps({
+import EssentialLink from './EssentialLink.vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+const props = defineProps({
   title: String,
   caption: String,
   link: String,
@@ -39,5 +48,19 @@ defineProps({
     default: () => []
   }
 })
-import EssentialLink from './EssentialLink.vue'
+
+const isActive = computed(() => {
+  return route.path === props.link
+})
+
+const hasActiveChild = computed(() => {
+  if (!props.children || !props.children.length) return false
+  return props.children.some(child => {
+    if (!child.link) return false
+    if (child.link === route.path) return true
+    if (child.link !== '/' && route.path.startsWith(child.link)) return true
+    
+    return false
+  })
+})
 </script>

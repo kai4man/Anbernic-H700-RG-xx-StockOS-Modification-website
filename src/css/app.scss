@@ -1,1 +1,33 @@
 // app global css in SCSS form
+:root {
+  --color-light-bg-secondary: #fafafa
+}
+
+.drawer-header {
+  height: 50px;
+  padding: 0 16px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.markdown-body[data-theme=dark] {
+  background-color: var(--q-dark-page) !important;
+}
+
+.body--light {
+  .q-header {
+    background-color: var(--color-light-bg-secondary) !important;
+  }
+
+  .q-drawer {
+    background-color: var(--color-light-bg-secondary);
+  }
+}
+
+.body--dark {
+  .q-header {
+    background-color: var(--q-dark) !important;
+  }
+}

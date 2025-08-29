@@ -1,22 +1,20 @@
-
 <template>
-  <q-layout view="lhh LpR lFf">
-
-    <q-header reveal bordered class="bg-primary text-white">
+  <q-layout view="lHh LpR lFf">
+    <q-header bordered class="bg-primary text-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-
+        <q-btn :icon="themeIcon" round @click="toggleTheme" />
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          Title
+          
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <q-list>
+      <div class="drawer-header">
+        <span>StockOS Modification</span>
+      </div>
+      <q-list class="q-pt-xl">
         <EssentialLink v-for="link in linksList" :key="link.title" v-bind="link" />
       </q-list>
     </q-drawer>
@@ -24,154 +22,144 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-
   </q-layout>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import { useTheme } from 'src/composables/useTheme'
+
+const { toggleTheme, themeIcon } = useTheme()
 
 const linksList = [
   {
     title: 'Welcome',
-    link: '/'
+    link: '/',
   },
   {
     title: 'The Crew',
-    link: '/'
+    link: '/crew',
   },
   {
     title: 'Release',
     children: [
       {
         title: 'Current',
-        link: '/'
+        link: 'release/current',
       },
       {
         title: 'Change Log',
-        link: '/'
+        link: 'release/change_log',
       },
-    ]
+    ],
   },
   {
     title: 'Modification function',
     children: [
       {
         title: 'SAMBA Temporary Server',
-        link: '/'
+        link: '/modification_function/samba',
       },
       {
         title: 'SSH Temporary Server',
-        link: '/'
+        link: '/modification_function/ssh',
       },
       {
         title: 'Tiny Scraper',
-        link: '/'
+        link: '/modification_function/tiny_scraper',
       },
       {
         title: 'Image Browser',
-        link: '/'
+        link: '/modification_function/image_browser',
       },
       {
         title: 'Custom Bezel Manager',
-        link: '/'
+        link: '/modification_function/bezel',
       },
       {
         title: 'Themes Manager',
-        link: '/'
+        link: '/modification_function/themes_manager',
       },
       {
         title: 'System Settings Modifier',
-        link: '/'
+        link: '/modification_function/system_settings',
       },
       {
         title: 'Modify System Tools',
-        link: '/'
+        link: '/modification_function/system_tools',
       },
       {
         title: 'Clock',
-        link: '/'
+        link: '/modification_function/clock',
       },
       {
         title: 'Java',
-        link: '/'
+        link: '/modification_function/java',
       },
       {
         title: 'System Online Upgrade',
-        link: '/'
+        link: '/modification_function/online_upgrade',
       },
       {
         title: 'PortMaster',
-        link: '/'
+        link: '/modification_function/portmaster',
       },
       {
         title: 'System Monitor',
-        link: '/'
-      }
-    ]
+        link: '/modification_function/system_monitor',
+      },
+    ],
   },
   {
     title: 'Installation',
     children: [
       {
         title: 'Install Guide',
-        link: '/'
+        link: '/installation/install_guide',
       },
       {
         title: 'Artwork',
-        link: '/'
+        link: '/installation/artwork',
       },
       {
         title: 'PortMaster',
-        link: '/'
-      }
-    ]
+        link: '/installation/portmaster',
+      },
+    ],
   },
   {
     title: 'Themes',
     children: [
       {
-        title: 'Категории',
-        link: '/'
+        title: 'Themes',
+        link: '/themes',
       },
-    ]
+    ],
   },
   {
     title: 'Systems',
     children: [
       {
-        title: 'Бонусная система',
-        link: '/'
-      },
-      {
-        title: 'Бонусные уровни',
-        link: '/'
-      },
-      {
-        title: 'Акции',
-        link: '/'
-      },
-      {
-        title: 'Скидки',
-        link: '/'
+        title: 'Systems',
+        link: '/systems',
       }
-    ]
+    ],
   },
   {
     title: 'Devices',
     children: [
       {
         title: 'Anbernic',
-        link: '/'
+        link: '/devices/anbernic',
       },
-    ]
-  }
+    ],
+  },
 ]
 
 const leftDrawerOpen = ref(false)
 
-function toggleLeftDrawer() {
+const toggleLeftDrawer = () => {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
